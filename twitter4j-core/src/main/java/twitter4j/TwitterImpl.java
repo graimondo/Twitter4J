@@ -19,6 +19,7 @@ package twitter4j;
 
 import org.jetbrains.annotations.NotNull;
 import twitter4j.v1.*;
+import twitter4j.v2.TwitterV2;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -47,6 +48,7 @@ class TwitterImpl implements Twitter, HttpResponseListener, Serializable {
     private final HttpParameter[] IMPLICIT_PARAMS;
     private final ObjectFactory factory;
     private final String restBaseURL;
+    private final String restV2BaseUrl;
     private final boolean mbeanEnabled;
     private final String uploadBaseURL;
     private final String streamBaseURL;
@@ -62,6 +64,7 @@ class TwitterImpl implements Twitter, HttpResponseListener, Serializable {
     private transient List<Consumer<RateLimitStatusEvent>> rateLimitStatusListeners;
     private transient List<Consumer<RateLimitStatusEvent>> rateLimitReachedListeners;
     private transient TwitterV1 twitterV1;
+    private transient TwitterV2 twitterV2;
 
     @NotNull
     private final Authorization auth;
@@ -72,6 +75,7 @@ class TwitterImpl implements Twitter, HttpResponseListener, Serializable {
         this.factory = conf.factory;
 
         this.restBaseURL = conf.restBaseURL;
+        this.restV2BaseUrl = conf.restV2BaseURL;
         this.uploadBaseURL = conf.uploadBaseURL;
 
         this.http = conf.http;
@@ -141,6 +145,9 @@ class TwitterImpl implements Twitter, HttpResponseListener, Serializable {
         twitterV1 = new TwitterV1Impl(http, factory, restBaseURL, streamBaseURL, uploadBaseURL, auth, mbeanEnabled, IMPLICIT_PARAMS,
                 IMPLICIT_PARAMS_STR, rateLimitStatusListeners, rateLimitReachedListeners, streamThreadName, connectionLifeCycleListeners,
                 streamListeners, rawStreamListeners, jsonStoreEnabled, prettyDebug, stallWarningsEnabled);
+        twitterV2 = new TwitterV2Impl(http,factory,restV2BaseUrl, auth,mbeanEnabled,
+                rateLimitStatusListeners,rateLimitReachedListeners);
+
     }
 
     @Override
@@ -179,6 +186,11 @@ class TwitterImpl implements Twitter, HttpResponseListener, Serializable {
 
     public TwitterV1 v1() {
         return twitterV1;
+    }
+
+    @Override
+    public TwitterV2 v2() {
+        return twitterV2;
     }
 
     @Override

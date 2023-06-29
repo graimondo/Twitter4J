@@ -14,40 +14,40 @@
  * limitations under the License.
  */
 
-package examples.tweets;
+package examples.v2.managetweets;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.v1.Status;
+import twitter4j.v2.Tweet;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Example application that uses OAuth method to acquire access to your account.<br>
- * This application illustrates how to use OAuth method with Twitter4J.<br>
+ * This application illustrates how to use OAuth method with Twitter4J for posting tweet using api v2.<br>
  *
- * @author Yusuke Yamamoto - yusuke at mac.com
+ * @author Gaetano Raimondo - gaetano.raimondo at gmail.com
  */
-public final class UpdateStatus {
+public final class PostTweet {
     /**
-     * Usage: java twitter4j.examples.tweets.UpdateStatus [text]
+     * Usage: java twitter4j.examples.v2.managetweets.PostTweet [text]
      *
      * @param args message
      */
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Usage: java twitter4j.examples.tweets.UpdateStatus [text]");
+            System.out.println("Usage: java twitter4j.examples.v2.managetweets.PostTweet [text]");
             System.exit(-1);
         }
         try {
-            Map params=new HashMap();
-            Status status = Twitter.getInstance().v1().tweets().updateStatus(args[0]);
-            System.out.println("Successfully updated the status to [" + status.getText() + "].");
+            Tweet status = Twitter.getInstance().v2().manageTweets().postTweet(args[0]);
+            System.out.println("Successfully created tweet with text [" + status.getText() + "] and id ["+status.getId()+"].");
             System.exit(0);
         } catch (TwitterException te) {
             te.printStackTrace();
-            System.out.println("Failed to update status: " + te.getMessage());
+            System.out.println("Failed to create tweet: " + te.getMessage());
             System.exit(-1);
         }
     }

@@ -68,6 +68,8 @@ class Configuration<T2 extends Configuration> {
     String oAuth2InvalidateTokenURL = "https://api.twitter.com/oauth2/invalidate_token";
 
     String restBaseURL = "https://api.twitter.com/1.1/";
+
+    String restV2BaseURL = "https://api.twitter.com/2";
     String streamBaseURL = "https://stream.twitter.com/1.1/";
     String uploadBaseURL = "https://upload.twitter.com/1.1/";
 

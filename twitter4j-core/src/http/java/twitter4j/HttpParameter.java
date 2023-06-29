@@ -47,6 +47,7 @@ final class HttpParameter implements Comparable<HttpParameter>, java.io.Serializ
 
     public HttpParameter(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
+        this.name="body";
     }
 
     public HttpParameter(String name, File file) {

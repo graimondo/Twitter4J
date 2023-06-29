@@ -17,6 +17,7 @@
 package twitter4j;
 
 import twitter4j.v1.*;
+import twitter4j.v2.Tweet;
 
 import java.util.Map;
 import java.util.Objects;
@@ -255,6 +256,14 @@ class JSONImplFactory implements ObjectFactory {
     }
 
     /**
+     * @since Twitter4J 4.2.0
+     */
+    @Override
+    public Tweet createTweet(HttpResponse res)  throws TwitterException {
+        return new TweetJSONImpl(res, jsonStoreEnabled);
+    }
+
+    /**
      * static factory method for twitter-text-java
      *
      * @return hashtag entity
@@ -284,6 +293,11 @@ class JSONImplFactory implements ObjectFactory {
     public static URLEntity createUrlEntity(int start, int end, String url, String expandedURL, String displayURL) {
         return new URLEntityJSONImpl(start, end, url, expandedURL, displayURL);
     }
+
+
+
+
+
 
     @Override
     public boolean equals(Object o) {

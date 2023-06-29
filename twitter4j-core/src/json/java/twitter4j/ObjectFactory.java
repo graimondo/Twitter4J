@@ -17,6 +17,7 @@
 package twitter4j;
 
 import twitter4j.v1.*;
+import twitter4j.v2.Tweet;
 
 import java.util.Map;
 
@@ -86,4 +87,6 @@ interface ObjectFactory extends java.io.Serializable {
     <T> ResponseList<T> createEmptyResponseList();
 
     OEmbed createOEmbed(HttpResponse res) throws TwitterException;
+
+    Tweet createTweet(HttpResponse res)  throws TwitterException;
 }

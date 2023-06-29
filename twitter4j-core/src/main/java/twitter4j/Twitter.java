@@ -17,6 +17,7 @@ package twitter4j;
 
 import org.jetbrains.annotations.NotNull;
 import twitter4j.v1.*;
+import twitter4j.v2.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,8 @@ public interface Twitter extends java.io.Serializable {
      * @return returns Twitter API v1.1 interfaces
      */
     TwitterV1 v1();
+
+    TwitterV2 v2();
 
 
 
