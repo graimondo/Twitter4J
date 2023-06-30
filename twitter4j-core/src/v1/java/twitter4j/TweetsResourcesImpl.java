@@ -3,7 +3,9 @@ package twitter4j;
 import twitter4j.v1.*;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 class TweetsResourcesImpl extends APIResourceBase implements TweetsResources {
@@ -55,10 +57,7 @@ class TweetsResourcesImpl extends APIResourceBase implements TweetsResources {
 
     @Override
     public Status updateStatus(String status) throws TwitterException {
-        Map params=new HashMap();
-        params.put("text",status);
-        JSONObject obj=new JSONObject(params);
-        return factory.createStatus(post(restBaseURL + "tweets", new HttpParameter(obj)));
+        return factory.createStatus(post(restBaseURL + "statuses/update.json", new HttpParameter("status", status)));
     }
 
     @Override

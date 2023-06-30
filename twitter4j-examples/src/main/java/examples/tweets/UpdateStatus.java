@@ -20,9 +20,6 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.v1.Status;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Example application that uses OAuth method to acquire access to your account.<br>
  * This application illustrates how to use OAuth method with Twitter4J.<br>
@@ -41,7 +38,6 @@ public final class UpdateStatus {
             System.exit(-1);
         }
         try {
-            Map params=new HashMap();
             Status status = Twitter.getInstance().v1().tweets().updateStatus(args[0]);
             System.out.println("Successfully updated the status to [" + status.getText() + "].");
             System.exit(0);
