@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'org.twitter4j'
+group 'com.dshare.twitter4j'
 version '4.2.0-SNAPSHOT'
 
 repositories {

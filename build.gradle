@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'org.twitter4j'
+group 'com.dshare.twitter4j'
 version '4.2.0-SNAPSHOT'
 
 repositories {
@@ -57,12 +57,12 @@ publishing {
     }
     repositories {
         maven {
-            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
-            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            def releasesRepoUrl = "https://nexus3.dshare.cloud/repository/libs-release-local/"
+            def snapshotsRepoUrl = "https://nexus3.dshare.cloud/repository/libs-snapshot-local/"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
             credentials {
-                username = project.properties['SONATYPE_USERNAME'] ?: "none"
-                password = project.properties['SONATYPE_PASSWORD'] ?: "none"
+                username = project.properties['NEXUS_UPLOADER_USER'] ?: "none"
+                password = project.properties['NEXUS_UPLOADER_PASSWORD'] ?: "none"
             }
         }
     }
